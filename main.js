@@ -1,9 +1,17 @@
+
 var scrollpos = window.scrollY;
 var header = document.getElementById("header");
 var navcontent = document.getElementById("nav-content");
 var navaction = document.getElementById("navAction");
 var brandname = document.getElementById("brandname");
 var toToggle = document.querySelectorAll(".toggleColour");
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 
 document.addEventListener("scroll", function () {
   /*Apply classes for slide in bar*/
@@ -19,6 +27,7 @@ document.addEventListener("scroll", function () {
     for (var i = 0; i < toToggle.length; i++) {
       toToggle[i].classList.add("text-gray-800");
       toToggle[i].classList.remove("text-white");
+      toToggle[i].classList.add("block");
     }
     header.classList.add("shadow");
     navcontent.classList.remove("bg-gray-100");
@@ -33,6 +42,7 @@ document.addEventListener("scroll", function () {
     for (var i = 0; i < toToggle.length; i++) {
       toToggle[i].classList.add("text-white");
       toToggle[i].classList.remove("text-gray-800");
+      toToggle[i].classList.add("block");
     }
 
     header.classList.remove("shadow");
@@ -85,4 +95,28 @@ function checkParent(t, elm) {
     t = t.parentNode;
   }
   return false;
+}
+
+var fanOffImg = document.getElementById("fan-off-img");
+var fanOnImg = document.getElementById("fan-on-img");
+var lightOnImg = document.getElementById("light-on-img");
+var lightOffImg = document.getElementById("light-off-img");
+function TurnOnFan() {
+  fanOnImg.classList.remove("hidden");
+  fanOffImg.classList.add("hidden");
+}
+
+function TurnOffFan() {
+  fanOnImg.classList.add("hidden");
+  fanOffImg.classList.remove("hidden");
+}
+
+function TurnOnLight() {
+  lightOnImg.classList.remove("hidden");
+  lightOffImg.classList.add("hidden");
+}
+
+function TurnOffLight() {
+  lightOnImg.classList.add("hidden");
+  lightOffImg.classList.remove("hidden");
 }
