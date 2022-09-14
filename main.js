@@ -5,7 +5,8 @@ var navcontent = document.getElementById("nav-content");
 var navaction = document.getElementById("navAction");
 var brandname = document.getElementById("brandname");
 var toToggle = document.querySelectorAll(".toggleColour");
-
+var hdlink = document.getElementsByClassName("hd-link");
+console.log(hdlink);
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,6 +24,10 @@ document.addEventListener("scroll", function () {
     navaction.classList.add("gradient");
     navaction.classList.remove("text-gray-800");
     navaction.classList.add("text-white");
+    for (var i = 0; i < hdlink.length; i++) {
+      hdlink[i].classList.remove("text-white");
+      hdlink[i].classList.add("text-black");
+    }
     //Use to switch toggleColour colours
     for (var i = 0; i < toToggle.length; i++) {
       toToggle[i].classList.add("text-gray-800");
@@ -44,7 +49,10 @@ document.addEventListener("scroll", function () {
       toToggle[i].classList.remove("text-gray-800");
       toToggle[i].classList.add("block");
     }
-
+    for (var i = 0; i < hdlink.length; i++) {
+      hdlink[i].classList.add("text-white");
+      hdlink[i].classList.remove("text-black");
+    }
     header.classList.remove("shadow");
     navcontent.classList.remove("bg-white");
     navcontent.classList.add("bg-gray-100");
