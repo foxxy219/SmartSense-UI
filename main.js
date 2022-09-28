@@ -128,3 +128,19 @@ function TurnOffLight() {
   lightOnImg.classList.add("hidden");
   lightOffImg.classList.remove("hidden");
 }
+
+document.addEventListener('alpine:init', () => {
+  Alpine.data('topBtn', () => ({
+      scrolltoTop() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+      }
+  }));
+});
+
+const topBtn = document.getElementById("topButton");
+window.onscroll = () => {
+  (document.body.scrollTop > 200 || document.documentElement.scrollTop > 2000) ?
+  topBtn.classList.remove("hidden"): topBtn.classList.add("hidden");
+  console.log(document.body.scrollTop);
+}

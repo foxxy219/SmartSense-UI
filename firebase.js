@@ -16,14 +16,14 @@ import {
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCi70wIBVNj5_SKiBFtn0ua4RbK6XajVOQ",
-  authDomain: "dht11-41e5b.firebaseapp.com",
-  databaseURL: "https://dht11-41e5b-default-rtdb.firebaseio.com",
-  projectId: "dht11-41e5b",
-  storageBucket: "dht11-41e5b.appspot.com",
-  messagingSenderId: "1042127375321",
-  appId: "1:1042127375321:web:5a38d454fbbaf9d02a67c8",
-  measurementId: "G-MBN978P1BF",
+  apiKey: "AIzaSyAWHYn160O4oSFEPbrc7WRCIKjU7fO0008",
+  authDomain: "iotwebbased-32566.firebaseapp.com",
+  databaseURL: "https://iotwebbased-32566-default-rtdb.firebaseio.com",
+  projectId: "iotwebbased-32566",
+  storageBucket: "iotwebbased-32566.appspot.com",
+  messagingSenderId: "836120121218",
+  appId: "1:836120121218:web:c2af111255095812d4499b",
+  measurementId: "G-XRLV876YJ6"
 };
 
 // Initialize Firebase
@@ -34,10 +34,11 @@ const dbRef = ref(getDatabase());
 
 const tempData = document.getElementById("temp-data");
 const humidData = document.getElementById("humid-data");
-
+const forceData = document.getElementById("force-data");
 var getdata = get(child(dbRef, `/`))
   .then((snapshot) => {
     if (snapshot.exists()) {
+      console.log(snapshot.val());
       return snapshot.val();
     } else {
       console.log("No data available");
@@ -49,12 +50,17 @@ var getdata = get(child(dbRef, `/`))
 
 document.getElementById("read-temp-btn").onclick = async () => {
   const a = await getdata;
-  tempData.innerHTML = Object.values(a)[1] + "°C";
+  tempData.innerHTML = Object.values(a)[2] + "°C";
 };
 
 document.getElementById("read-humid-btn").onclick = async () => {
   const a = await getdata;
-  humidData.innerHTML = Object.values(a)[0] + "%";
+  humidData.innerHTML = Object.values(a)[1] + "%";
+};
+
+document.getElementById("read-force-btn").onclick = async () => {
+  const a = await getdata;
+  forceData.innerHTML = Object.values(a)[0] + "F";
 };
 console.log({ tempData, humidData });
 // function getTempData(data) {

@@ -10,7 +10,7 @@
   <script src="./main.js" defer></script>
   <script type="module" src="./firebase.js" defer></script>
 
-
+  <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <!--Replace with your tailwind.css once created-->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
@@ -42,6 +42,8 @@
   </style>
 </head>
 
+
+
 <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif">
   <!--Nav-->
   <nav id="header" class="fixed w-full z-30 top-0 text-white">
@@ -67,7 +69,7 @@
         class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
         id="nav-content">
         <ul class="list-reset lg:flex justify-end flex-1 items-center">
-          <li class="mr-3">
+          <!-- <li class="mr-3">
             <a class="hd-link inline-block py-2 px-4 text-white font-bold no-underline transform transition" href="#">Active</a>
           </li>
           <li class="mr-3">
@@ -77,7 +79,7 @@
           <li class="mr-3">
             <a class="hd-link inline-block text-white no-underline hover:text-gray-800 hover:text-underline py-2 px-4 transform transition"
               href="#">link</a>
-          </li>
+          </li> -->
         </ul>
         <a href="https://github.com/foxxy219">
           <button id="navAction"
@@ -91,10 +93,9 @@
     <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
   </nav>
   <!--Hero-->
-  <div class="pt-24 inline-flex z-20 bg-center bg-cover h-full w-full pb-72" style="background-image: url(https://thinger.io/wp-content/uploads/2021/03/aerial-view-city-night-social-media-connection-concept-photo-manipulation-scaled.jpg)" >
 
-  
-    <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+  <div class="pt-24 inline-flex z-20 bg-center bg-cover h-full w-full pb-72" style="background-image: url(https://thinger.io/wp-content/uploads/2021/03/aerial-view-city-night-social-media-connection-concept-photo-manipulation-scaled.jpg)" >
+    <div class="container z-10 px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
       <!--Left Col-->
 
       <!-- Slider controls -->
@@ -149,8 +150,8 @@
       </div>
       
     </div>
-
-  </div>
+  
+</div>
   <!-- <div class="flex -mt-12 lg:-mt-36">
     <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -416,7 +417,7 @@
     </div>
   </section>
   <!-- Humidity and Temperature -->
-  <section class="bg-white border-b py-8">
+  <section class="bg-white border-b py-4">
     <div class="container mx-auto flex flex-wrap pt-4 pb-12">
       <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
         Humidity and Temperature
@@ -424,7 +425,7 @@
       <div class="w-full mb-4 flex-wrap">
         <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
       </div>
-      <div class="w-full xl:w-1/3 px-32 py-24 flex flex-col flex-grow flex-shrink">
+      <div class="w-full xl:w-1/3 px-12 py-24 flex flex-col flex-grow flex-shrink">
         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
           <div class="flex flex-wrap no-underline hover:no-underline">
             <!-- <p class="w-full text-center text-gray-600 text-xs md:text-sm px-6">
@@ -436,7 +437,31 @@
             <p class="text-gray-800 px-6 mb-5 text-center w-full">
               Click the button below to display Temperature
             </p>
-            <div class="flex-wrap flex-1 w-1/2 h-auto sm:h-auto justify-center items-center sm:h-48 p-6 mt-1">
+            
+            <div class="flex-wrap flex-1 w-1/2 sm:h-auto justify-center items-center sm:h-48 p-6 mt-1">
+              <div class="block w-auto sm:h-auto h-64 justify-center items-center sm:h-32 p-8 mx-auto">
+
+                <?xml version="1.0" encoding="iso-8859-1"?>
+                <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 508.1 508.1" style="enable-background:new 0 0 508.1 508.1;" xml:space="preserve">
+                <g>
+                  <g>
+                    <path d="M268.146,307.3V171.5c0-7.8-6.3-14.1-14.1-14.1c-7.8,0-14.1,6.3-14.1,14.1v135.8c-33,6.6-58,35.8-58,70.7
+                    c0,39.8,32.4,72.1,72.1,72.1c39.8,0,72.1-32.4,72.1-72.1C326.146,343,301.246,313.8,268.146,307.3z M254.046,421.9
+                    c-24.2,0-43.9-19.7-43.9-43.9c0-24.2,19.7-43.9,43.9-43.9s43.9,19.7,43.9,43.9S278.246,421.9,254.046,421.9z"/>
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path d="M326.046,269.8V72c0-39.7-32.3-72-72-72s-72,32.3-72,72v197.9c-38.3,25.5-60.3,68.9-57.8,115.2
+                    c3.5,65.8,50.8,123,129.8,123c96.7,0,130-87.7,130-130C384.046,334.6,362.046,293.8,326.046,269.8z M254.046,479.8
+                    c-57.2,0-97.8-42.4-101.6-96.2c-2.8-38.4,17.4-74.3,50.8-93.6c4.4-2.5,7-7.2,7-12.2V72c0-24.1,19.6-43.8,43.8-43.8
+                    c24.1,0,43.8,19.6,43.8,43.8v205.7c0,5,2.7,9.7,7,12.2c31.4,18.2,51,51.9,51,88.1C355.846,421.3,318.646,479.8,254.046,479.8z"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
               <p id="temp-data"
                 class="flex text-black font-bold text-6xl w-full text-center justify-center items-center">
 
@@ -446,6 +471,7 @@
         </div>
         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
           <div class="flex items-center justify-around">
+        
             <button id="read-temp-btn"
               class="w-auto mx-auto justify-start lg:mx-0 hover:underline bg-black text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
               Read
@@ -453,7 +479,7 @@
           </div>
         </div>
       </div>
-      <div class="w-full xl:w-1/3 px-32 py-24 flex flex-col flex-grow flex-shrink">
+      <div class="w-full xl:w-1/3 px-12 py-24 flex flex-col flex-grow flex-shrink">
         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
           <div href="#" class="flex flex-wrap no-underline hover:no-underline">
             <div class="text-center w-full font-bold text-xl text-gray-800 px-6">
@@ -465,12 +491,9 @@
             <div class="flex-wrap flex-1 w-1/2 h-auto sm:h-auto justify-center items-center sm:h-48 p-6 mt-1">
               <p id="humid-data"
                 class=" flex text-black font-bold text-6xl w-full text-center justify-center items-center">
-
               </p>
             </div>
           </div>
-
-
         </div>
 
         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
@@ -481,8 +504,39 @@
             </button>
           </div>
         </div>
-      </div>
+
+        
     </div>
+    
+    <div class="w-full xl:w-1/3 px-12 py-24 flex flex-col flex-grow flex-shrink">
+      <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+        <div href="#" class="flex flex-wrap no-underline hover:no-underline">
+          <div class="text-center w-full font-bold text-xl text-gray-800 px-6">
+            Force
+          </div>
+          <p class="w-full text-center text-gray-800 text-base px-6 mb-5">
+            Click the button below to display Force
+          </p>
+          <div class="flex-wrap flex-1 w-1/2 h-auto sm:h-auto justify-center items-center sm:h-48 p-6 mt-1">
+            <p id="force-data"
+              class=" flex text-black font-bold text-6xl w-full text-center justify-center items-center">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+        <div class="flex items-center justify-around">
+          <button id="read-force-btn"
+            class="w-auto mx-auto justify-start lg:mx-0 hover:underline bg-black text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            Read
+          </button>
+        </div>
+      </div>
+
+      
+  </div>
+
   </section>
   <!-- Module -->
   <section class="bg-white border-b py-8">
@@ -744,6 +798,15 @@
         </div>
       </div>
     </div>
+    <!-- back to top button -->
+<button x-data="topBtn" @click="scrolltoTop" id="topButton"
+class="fixed z-10 hidden p-3 gradient rounded-full shadow-md bottom-10 right-10 animate-bounce">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18">
+    </path>
+</svg>
+</button>
   </section>
   <!-- Change the colour #f8fafc to match the previous section colour -->
   <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -803,7 +866,7 @@
             With Us
           </a>
         </div>
-        <!-- <div class="flex-1">
+        <div class="flex-1">
             <p class="uppercase text-gray-500 md:mb-6">Links</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -828,8 +891,8 @@
                 >
               </li>
             </ul>
-          </div> -->
-        <!-- <div class="flex-1">
+          </div>
+        <div class="flex-1">
             <p class="uppercase text-gray-500 md:mb-6">Legal</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -847,7 +910,7 @@
                 >
               </li>
             </ul>
-          </div> -->
+          </div>
         <!-- <div class="flex-1">
             <p class="uppercase text-gray-500 md:mb-6">Social</p>
             <ul class="list-reset mb-6">
