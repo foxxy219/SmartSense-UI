@@ -6,7 +6,6 @@ var navaction = document.getElementById("navAction");
 var brandname = document.getElementById("brandname");
 var toToggle = document.querySelectorAll(".toggleColour");
 var hdlink = document.getElementsByClassName("hd-link");
-console.log(hdlink);
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -103,30 +102,6 @@ function checkParent(t, elm) {
     t = t.parentNode;
   }
   return false;
-}
-
-var fanOffImg = document.getElementById("fan-off-img");
-var fanOnImg = document.getElementById("fan-on-img");
-var lightOnImg = document.getElementById("light-on-img");
-var lightOffImg = document.getElementById("light-off-img");
-function TurnOnFan() {
-  fanOnImg.classList.remove("hidden");
-  fanOffImg.classList.add("hidden");
-}
-
-function TurnOffFan() {
-  fanOnImg.classList.add("hidden");
-  fanOffImg.classList.remove("hidden");
-}
-
-function TurnOnLight() {
-  lightOnImg.classList.remove("hidden");
-  lightOffImg.classList.add("hidden");
-}
-
-function TurnOffLight() {
-  lightOnImg.classList.add("hidden");
-  lightOffImg.classList.remove("hidden");
 }
 
 document.addEventListener('alpine:init', () => {

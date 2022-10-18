@@ -9,6 +9,7 @@ import {
   update,
   remove,
   onValue,
+  set,
 } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,7 +24,7 @@ const firebaseConfig = {
   storageBucket: "iotwebbased-32566.appspot.com",
   messagingSenderId: "836120121218",
   appId: "1:836120121218:web:c2af111255095812d4499b",
-  measurementId: "G-XRLV876YJ6"
+  measurementId: "G-XRLV876YJ6",
 };
 
 // Initialize Firebase
@@ -35,7 +36,7 @@ const dbRef = ref(getDatabase());
 const tempData = document.getElementById("temp-data");
 const humidData = document.getElementById("humid-data");
 const forceData = document.getElementById("force-data");
-var getdata = get(child(dbRef, `/`))
+var getdata = get(child(dbRef, `/sensor`))
   .then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
@@ -66,3 +67,93 @@ console.log({ tempData, humidData });
 // function getTempData(data) {
 //   return tempData.innerHTML = Object.values(data)[1];
 // }
+
+function writeStatus(fan, light, aircon) {
+  const db = getDatabase();
+  set(ref(db, "status/"), {
+    fan: fan,
+    light: light,
+    aircon: aircon,
+  });
+}
+function writeNewFanStatus(fan) {
+  const db = getDatabase();
+  update(ref(db, "status/"), {
+    fan: fan,
+  });
+}
+function writeNewLightStatus(light) {
+  const db = getDatabase();
+  update(ref(db, "status/"), {
+    light: light,
+  });
+}
+function writeNewAirconStatus(aircon) {
+  const db = getDatabase();
+  update(ref(db, "status/"), {
+    aircon: aircon,
+  });
+}
+
+function readStatus() {
+  const db = getDatabase();
+  const dbRef = ref(getDatabase());
+  get(child(dbRef, "status/"))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+
+var fanOffImg = document.getElementById("fan-off-img");
+var fanOnImg = document.getElementById("fan-on-img");
+var lightOnImg = document.getElementById("light-on-img");
+var lightOffImg = document.getElementById("light-off-img");
+var airconOffImg = document.getElementById("aircon-off-img");
+var airconOnImg = document.getElementById("aircon-on-img");
+document.getElementById("fan-on-btn").onclick = () => {
+  writeNewFanStatus(1);
+  fanOnImg.classList.remove("hidden");
+  fanOffImg.classList.add("hidden");
+};
+document.getElementById("fan-off-btn").onclick = () => {
+  writeNewFanStatus(0);
+  fanOnImg.classList.add("hidden");
+  fanOffImg.classList.remove("hidden");
+};
+document.getElementById("light-on-btn").onclick = () => {
+  writeNewLightStatus(1);
+  lightOnImg.classList.remove("hidden");
+  lightOffImg.classList.add("hidden");
+};
+document.getElementById("light-off-btn").onclick = () => {
+  writeNewLightStatus(0);
+  lightOnImg.classList.add("hidden");
+  lightOffImg.classList.remove("hidden");
+};
+document.getElementById("aircon-on-btn").onclick = () => {
+  writeNewAirconStatus(1);
+  airconOnImg.classList.remove("hidden");
+  airconOffImg.classList.add("hidden");
+};
+document.getElementById("aircon-off-btn").onclick = () => {
+  writeNewAirconStatus(0);
+  airconOnImg.classList.add("hidden");
+  airconOffImg.classList.remove("hidden");
+};
+
+export {
+  writeStatus,
+  writeNewFanStatus,
+  writeNewLightStatus,
+  writeNewAirconStatus,
+  readStatus,
+};
