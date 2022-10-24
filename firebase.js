@@ -52,34 +52,35 @@ var getdata = get(child(dbRef, `/sensor`))
 document.getElementById("read-temp-btn").onclick = async () => {
   const a = await getdata;
   tempData.innerHTML = Object.values(a)[2] + "°C";
+
 };
 
 document.getElementById("read-humid-btn").onclick = async () => {
   const a = await getdata;
-  humidData.innerHTML = Object.values(a)[1] + "%";
+  humidData.innerHTML = Object.values(a)[0] + "%";
 };
 
 document.getElementById("read-force-btn").onclick = async () => {
   const a = await getdata;
-  forceData.innerHTML = Object.values(a)[0] + "F";
+  forceData.innerHTML = Object.values(a)[1] + "F";
 };
 console.log({ tempData, humidData });
 // function getTempData(data) {
 //   return tempData.innerHTML = Object.values(data)[1];
 // }
 
-function writeStatus(fan, light, aircon) {
+function writeStatus(servo, light, buzzer) {
   const db = getDatabase();
   set(ref(db, "status/"), {
-    fan: fan,
+    servo: servo,
     light: light,
-    aircon: aircon,
+    buzzer: buzzer,
   });
 }
-function writeNewFanStatus(fan) {
+function writeNewServoStatus(servo) {
   const db = getDatabase();
   update(ref(db, "status/"), {
-    fan: fan,
+    servo: servo,
   });
 }
 function writeNewLightStatus(light) {
@@ -88,10 +89,10 @@ function writeNewLightStatus(light) {
     light: light,
   });
 }
-function writeNewAirconStatus(aircon) {
+function writeNewBuzzerStatus(buzzer) {
   const db = getDatabase();
   update(ref(db, "status/"), {
-    aircon: aircon,
+    buzzer: buzzer,
   });
 }
 
@@ -113,47 +114,47 @@ function readStatus() {
 }
 
 
-var fanOffImg = document.getElementById("fan-off-img");
-var fanOnImg = document.getElementById("fan-on-img");
+var servoOffImg = document.getElementById("servo-off-img");
+var servoOnImg = document.getElementById("servo-on-img");
 var lightOnImg = document.getElementById("light-on-img");
 var lightOffImg = document.getElementById("light-off-img");
-var airconOffImg = document.getElementById("aircon-off-img");
-var airconOnImg = document.getElementById("aircon-on-img");
-document.getElementById("fan-on-btn").onclick = () => {
-  writeNewFanStatus(1);
-  fanOnImg.classList.remove("hidden");
-  fanOffImg.classList.add("hidden");
+var buzzerOffImg = document.getElementById("buzzer-off-img");
+var buzzerOnImg = document.getElementById("buzzer-on-img");
+document.getElementById("servo-on-btn").onclick = () => {
+  writeNewServoStatus(true);
+  servoOnImg.classList.remove("hidden");
+  servoOffImg.classList.add("hidden");
 };
-document.getElementById("fan-off-btn").onclick = () => {
-  writeNewFanStatus(0);
-  fanOnImg.classList.add("hidden");
-  fanOffImg.classList.remove("hidden");
+document.getElementById("servo-off-btn").onclick = () => {
+  writeNewServoStatus(false);
+  servoOnImg.classList.add("hidden");
+  servoOffImg.classList.remove("hidden");
 };
 document.getElementById("light-on-btn").onclick = () => {
-  writeNewLightStatus(1);
+  writeNewLightStatus(true);
   lightOnImg.classList.remove("hidden");
   lightOffImg.classList.add("hidden");
 };
 document.getElementById("light-off-btn").onclick = () => {
-  writeNewLightStatus(0);
+  writeNewLightStatus(false);
   lightOnImg.classList.add("hidden");
   lightOffImg.classList.remove("hidden");
 };
-document.getElementById("aircon-on-btn").onclick = () => {
-  writeNewAirconStatus(1);
-  airconOnImg.classList.remove("hidden");
-  airconOffImg.classList.add("hidden");
+document.getElementById("buzzer-on-btn").onclick = () => {
+  writeNewBuzzerStatus(true);
+  buzzerOnImg.classList.remove("hidden");
+  buzzerOffImg.classList.add("hidden");
 };
-document.getElementById("aircon-off-btn").onclick = () => {
-  writeNewAirconStatus(0);
-  airconOnImg.classList.add("hidden");
-  airconOffImg.classList.remove("hidden");
+document.getElementById("buzzer-off-btn").onclick = () => {
+  writeNewBuzzerStatus(false);
+  buzzerOnImg.classList.add("hidden");
+  buzzerOffImg.classList.remove("hidden");
 };
 
 export {
   writeStatus,
-  writeNewFanStatus,
+  writeNewServoStatus,
   writeNewLightStatus,
-  writeNewAirconStatus,
+  writeNewBuzzerStatus,
   readStatus,
 };
