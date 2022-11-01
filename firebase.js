@@ -35,35 +35,68 @@ const dbRef = ref(getDatabase());
 
 const tempData = document.getElementById("temp-data");
 const humidData = document.getElementById("humid-data");
-const forceData = document.getElementById("force-data");
-var getdata = get(child(dbRef, `/sensor`))
-  .then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val());
-      return snapshot.val();
-    } else {
-      console.log("No data available");
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+const rainData = document.getElementById("rain-data");
+
+const starCountRef = ref(db, "/sensor");
+// var getdata = onValue(starCountRef, (snapshot) => {
+//   const data = snapshot.val();
+//   return data;
+// });
+
+// onValue(starCountRef, (snapshot) => {
+//   if (snapshot.exists()) {
+//     console.log(snapshot.val());
+//     return snapshot.val();
+//   } else {
+//     console.log("No data available");
+//   }
+// });
+
+// var getdata = get(child(dbRef, `/sensor`))
+//   .then((snapshot) => {
+//     if (snapshot.exists()) {
+//       console.log(snapshot.val());
+//       return snapshot.val();
+//     } else {
+//       console.log("No data available");
+//     }
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+var temp_lock = false;
+var humid_lock = false;
+var rain_lock = false;
+  var data;
+var getdata = onValue(starCountRef, (snapshot) => {
+   data = snapshot.val();
+   console.log(data);
+  if (temp_lock) {
+  tempData.innerHTML = Object.values(data)[2] + "°C";
+  }
+  if (humid_lock) {
+  humidData.innerHTML = Object.values(data)[0] + "%";
+  }
+  if (rain_lock) {
+  rainData.innerHTML = Object.values(data)[1] + "%";
+  }
+});
 
 document.getElementById("read-temp-btn").onclick = async () => {
-  const a = await getdata;
-  tempData.innerHTML = Object.values(a)[2] + "°C";
-
+  temp_lock = true;
+  tempData.innerHTML = Object.values(data)[2] + "°C";
 };
 
 document.getElementById("read-humid-btn").onclick = async () => {
-  const a = await getdata;
-  humidData.innerHTML = Object.values(a)[0] + "%";
+  humid_lock = true;
+  humidData.innerHTML = Object.values(data)[0] + "%";
 };
 
-document.getElementById("read-force-btn").onclick = async () => {
-  const a = await getdata;
-  forceData.innerHTML = Object.values(a)[1] + "F";
+document.getElementById("read-rain-btn").onclick = async () => {
+  rain_lock = true;
+  rainData.innerHTML = Object.values(data)[1] + "%";
 };
+
 console.log({ tempData, humidData });
 // function getTempData(data) {
 //   return tempData.innerHTML = Object.values(data)[1];
@@ -112,7 +145,6 @@ function readStatus() {
       console.error(error);
     });
 }
-
 
 var servoOffImg = document.getElementById("servo-off-img");
 var servoOnImg = document.getElementById("servo-on-img");
