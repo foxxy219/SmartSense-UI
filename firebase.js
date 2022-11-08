@@ -67,7 +67,7 @@ const starCountRef = ref(db, "/sensor");
 var temp_lock = false;
 var humid_lock = false;
 var rain_lock = false;
-  var data;
+var data;
 var getdata = onValue(starCountRef, (snapshot) => {
    data = snapshot.val();
    console.log(data);
@@ -129,6 +129,13 @@ function writeNewBuzzerStatus(buzzer) {
   });
 }
 
+function writeNewTestStatus(test) {
+  const db = getDatabase();
+  update(ref(db, "status/"), {
+    test: test,
+  });
+}
+
 function readStatus() {
   const db = getDatabase();
   const dbRef = ref(getDatabase());
@@ -162,6 +169,7 @@ document.getElementById("servo-off-btn").onclick = () => {
   servoOnImg.classList.add("hidden");
   servoOffImg.classList.remove("hidden");
 };
+
 document.getElementById("light-on-btn").onclick = () => {
   writeNewLightStatus(true);
   lightOnImg.classList.remove("hidden");
@@ -182,6 +190,29 @@ document.getElementById("buzzer-off-btn").onclick = () => {
   buzzerOnImg.classList.add("hidden");
   buzzerOffImg.classList.remove("hidden");
 };
+
+// document.getElementById("test-off-btn").onclick = () => {
+//   writeNewTestStatus(false);
+// };
+
+// document.getElementById("test-on-btn").onclick = () => {
+//   writeNewTestStatus(true);
+// }
+
+// document.getElementById("light-toggle-btn").onclick = () => {
+//   if(document.getElementById("light-toggle-btn").innerHTML == "Turn On"){
+//     writeNewLightStatus(true);
+//     lightOnImg.classList.remove("hidden");
+//     lightOffImg.classList.add("hidden");
+//     document.getElementById("light-toggle-btn").innerHTML = "Turn Off";
+// }
+//   else{
+//     writeNewLightStatus(false);
+//     lightOnImg.classList.add("hidden");
+//     lightOffImg.classList.remove("hidden");
+//     document.getElementById("light-toggle-btn").innerHTML = "Turn On";
+//   }
+// }
 
 export {
   writeStatus,
