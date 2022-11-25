@@ -13,7 +13,7 @@
 #define servoPin 13  
 #define lightPin 16  
 #define buzzerPin 17  
-#define rainPin 18
+#define rainPin 34
 DHT dht(DHTPIN, DHTTYPE);
 FirebaseData fbdo;
 
@@ -25,11 +25,10 @@ int l;
 int a;
 
 void setup() {
-  pinMode(34,INPUT);
+  pinMode(rainPin,INPUT);
   pinMode(servoPin, OUTPUT);
   pinMode(lightPin, OUTPUT);
   pinMode(buzzerPin, OUTPUT);
-  pinMode(rainPin, OUTPUT);
   ESP32PWM::allocateTimer(0);
   ESP32PWM::allocateTimer(1);
   ESP32PWM::allocateTimer(2);
@@ -101,8 +100,8 @@ void Display_Serial()
   h = dht.readHumidity();
   t = dht.readTemperature();  // Đọc nhiệt độ theo độ C
 //  l = map(analogRead(34), 150, 440, 1023, 0);
-  a = analogRead(34);
-  l = map(analogRead(34), 4095, 0, 0, 100);
+  a = analogRead(rainPin);
+  l = map(analogRead(rainPin), 4095, 0, 0, 100);
   if (isnan(h) || isnan(t)) {
     Serial.println("Failed to read from DHT sensor!");
     return;
