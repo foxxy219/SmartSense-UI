@@ -1,2 +1,2 @@
-# iot-web-based
-https://foxxy219.github.io/iot-web-based/
+# SmartSense-UI
+https://foxxy219.github.io/SmartSense-UI/
